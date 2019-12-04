@@ -1,1 +1,27 @@
-<p>workout-detail works!</p>
+<div class="panel panel-default">
+	<div class="panel-heading">
+		<div class="row">
+			<div class="col-xs-12">
+				<h2>{{ contact?.name }}</h2>
+			</div>
+		</div>
+		<div class="row">
+			<div class="col-xs-9">
+				<img [src]="contact?.imageUrl" alt="{{ contact?.name }}" style="max-height: 150px;">
+			</div>
+			<div class="col-xs-3 btn-toolbar">
+				<a class="btn btn-primary" [routerLink]="['/contacts', contact ? contact.id : 0, 'edit']">Edit</a>
+				<hr>
+				<a class="btn btn-danger" (click)="onDelete()">Delete</a>
+			</div>
+		</div>
+	</div>
+	<div class="panel-body">
+		<p><b>Email:</b> {{ contact?.email }}</p>
+		<p><b>Phone:</b> {{ contact?.phone }}</p>
+	</div>
+	<div class="panel-body"  *ngFor="let groupContact of contact?.group">
+		<div>{{ groupContact?.name }}</div>
+		<div>{{ groupContact?.email }}</div>
+	</div>
+</div>
