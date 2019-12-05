@@ -3,9 +3,9 @@ using MongoDB.Bson.Serialization.Attributes;
 using System;
 
 
-namespace BooksApi.Models
+namespace WorkoutApp.Models
 {
-    public class Book
+    public class Workout
     {
         [BsonId]
         [BsonRepresentation(BsonType.ObjectId)]
