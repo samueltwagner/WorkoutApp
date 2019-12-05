@@ -5,6 +5,8 @@ using Microsoft.AspNetCore.SpaServices.AngularCli;
 using Microsoft.Extensions.Configuration;
 using Microsoft.Extensions.DependencyInjection;
 using Microsoft.Extensions.Hosting;
+using Microsoft.Extensions.Options;
+using WorkoutApp.Models;
 
 namespace WorkoutApp
 {
@@ -20,12 +22,14 @@ namespace WorkoutApp
         // This method gets called by the runtime. Use this method to add services to the container.
         public void ConfigureServices(IServiceCollection services)
         {
-            services.AddControllersWithViews();
-            // In production, the Angular files will be served from this directory
-            services.AddSpaStaticFiles(configuration =>
-            {
-                configuration.RootPath = "ClientApp/dist";
-            });
+            // requires using Microsoft.Extensions.Options
+            services.Configure<WorkoutAppDatabaseSettings>(
+                Configuration.GetSection(nameof(WorkoutAppDatabaseSettings)));
+
+            services.AddSingleton<IWorkoutAppDatabaseSettings>(sp =>
+                sp.GetRequiredService<IOptions<WorkoutAppDatabaseSettings>>().Value);
+
+            services.AddControllers();
         }
 
         // This method gets called by the runtime. Use this method to configure the HTTP request pipeline.
