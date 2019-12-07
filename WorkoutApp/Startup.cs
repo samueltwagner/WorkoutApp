@@ -7,6 +7,7 @@ using Microsoft.Extensions.DependencyInjection;
 using Microsoft.Extensions.Hosting;
 using Microsoft.Extensions.Options;
 using WorkoutApp.Models;
+using WorkoutApp.Services;
 
 namespace WorkoutApp
 {
@@ -28,6 +29,8 @@ namespace WorkoutApp
 
             services.AddSingleton<IWorkoutAppDatabaseSettings>(sp =>
                 sp.GetRequiredService<IOptions<WorkoutAppDatabaseSettings>>().Value);
+
+            services.AddSingleton<WorkoutService>();
 
             services.AddControllers();
         }
