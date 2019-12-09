@@ -1,96 +1,114 @@
 <div class="panel panel-default">
     <div class="panel-body">
 
-        <form id="contact-edit" #f="ngForm" (ngSubmit)="onSubmit(f)">
+        <form id="workout-edit" #f="ngForm" (ngSubmit)="onSubmit(f)">
             <div class="row">
 
                 <div class="col-sm-12 form-group">
-                    <label for="name">Name</label>
+                    <label for="date">Date</label>
                     <input
-                        type="text"
-                        id="name"
+                        type="date"
+                        id="date"
                         class="form-control required"
                         size="120"
                         max="120"
-                        name="name"
-                        [ngModel]="contact?.name"
+                        name="date"
+                        [ngModel]="workout?.date"
                         required
                         #name="ngModel"
+                        placeholder="12/09/2019"
                     >
-
                 </div>
     
                 <div class="col-sm-12 form-group">
-                    <label for="email">Email</label>
+                    <label for="description">Description</label>
                     <input
                         type="text"
-                        id="email"
+                        id="description"
                         class="form-control required"
                         size="120"
                         max="255"
-                        name="email"
-                        [ngModel]="contact?.email"
+                        name="description"
+                        [ngModel]="workout?.description"
                         required
-                        #email="ngModel"
-                        pattern="^[a-z0-9._%+-]+@[a-z0-9.-]+\.[a-z]{2,3}$"
+                        #description="ngModel"
+                        placeholder="Monday Morning"
                     >
-                    <br>
+                    <!-- <br>
                     <div class="alert alert-danger" *ngIf="email.dirty && !email.valid">
                         <p>Enter a valid Email address.</p>
-                    </div>
+                    </div> -->
                 </div>
 
                 <div class="col-sm-12 form-group">
-                    <label for="phone">Phone</label>
+                    <label for="exercise">Exercise</label>
                     <input
                         type="text"
-                        id="phone"
+                        id="exercise"
                         class="form-control invalid"
                         size="150"
                         max="255"
-                        name="phone"
-                        [ngModel]="contact?.phone"
-                        #phone="ngModel"
-                        pattern="^\D*([2-9]\d{2})(\D*)([2-9]\d{2})(\D*)(\d{4})\D*"
+                        name="exercise"
+                        [ngModel]="workout?.exercise"
+                        #exercise="ngModel"
+                        placeholder="pushups"
                     >
-                    <br>
+                    <!-- <br>
                     <div class="alert alert-danger" *ngIf="phone.dirty && !phone.valid">
                         <p>Enter a valid Phone number.</p>
-                    </div>
+                    </div> -->
                 </div>
 
                 <div class="col-sm-12 form-group">
-                    <label for="imageUrl">Image URL</label>
+                    <label for="sets">Sets</label>
                     <input
-                        type="text"
-                        id="imageUrl"
+                        type="number"
+                        id="sets"
                         class="form-control"
                         size="150"
                         max="255"
-                        name="imageUrl"
-                        [ngModel]="contact?.imageUrl"
-                        #imageUrl="ngModel"
+                        name="sets"
+                        [ngModel]="workout?.sets"
+                        #sets="ngModel"
+                        placeholder="2"
+                    >
+                </div>
+
+                <div class="col-sm-12 form-group">
+                    <label for="reps">Reps</label>
+                    <input
+                        type="text"
+                        id="reps"
+                        class="form-control"
+                        size="150"
+                        max="255"
+                        name="reps"
+                        [ngModel]="workout?.reps"
+                        #reps="ngModel"
+                        placeholder="10"
+                    >
+                </div>
+
+                <div class="col-sm-12 form-group">
+                    <label for="weight">Weight</label>
+                    <input
+                        type="text"
+                        id="weight"
+                        class="form-control"
+                        size="150"
+                        max="255"
+                        name="weight"
+                        [ngModel]="workout?.weight"
+                        #weight="ngModel"
+                        placeholder="body weight"
                     >
                 </div>
             </div>
-    
-            <!-- <div class="form-group">
-                <label for="groupList">Group contacts</label>
-                <div class="row" id="groupList" style="min-height: 5rem;" dnd-droppable [dropZones]="['contactGroup']" (onDropSuccess)="addToGroup($event)">
-                    <div *ngFor="let contact of groupContacts; let i = index">
-                        <div>
 
-                            <cms-contact-item class="col-sm-11" [contact]="contact"></cms-contact-item>
-                            <button class="btn btn-danger col-sm-2 deleteButton" (click)="onRemoveItem(i)">X</button>
-                        </div>
-                    </div>
-                    <span class="dragMsg" style="min-height: 5rem;" *ngIf="groupContacts?.length < 1">Drag contacts in group here</span>
-                </div>
-            </div> -->
             <div class="row">
-                <div class="alert alert-danger" *ngIf="(!name.valid && name.touched) || (!email.valid && email.touched)">
+                <!-- <div class="alert alert-danger" *ngIf="(!name.valid && name.touched) || (!email.valid && email.touched)">
                     <p>The Name and Email are required.</p>
-                </div>
+                </div> -->
                 <div class="col-xs-12">
                     <button class="btn btn-success" type="submit" [disabled]="!f.valid">Save</button>
                     <button class="btn btn-primary" type="button" (click)="onCancel()">Cancel</button>
