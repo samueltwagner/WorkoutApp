@@ -16,13 +16,12 @@
     <div class="panel-body">
         <div class="row">
             <div class="col-xs-12" id="workoutList">
-                <app-workout-item></app-workout-item>
-                <!-- <cms-contact-item
-                    *ngFor="let contact of contacts | contactsFilter: term"
-                    [contact]="contact"
-                    dnd-draggable [dragEnabled]="true" [dragData]="contact" [dropZones]="['contactGroup']"
-                >
-                </cms-contact-item> -->
+                <!-- <app-workout-item></app-workout-item>
+                <workout-item
+                    *ngFor="let workout of workouts | workoutsFilter: term"
+                    [workout]="workout"
+                    dnd-draggable [dragEnabled]="true" [dragData]="workout" [dropZones]="['workoutGroup']">
+                </workout-item> -->
             </div>
         </div>
     </div>
