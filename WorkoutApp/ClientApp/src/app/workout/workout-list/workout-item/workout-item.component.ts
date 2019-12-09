@@ -1,4 +1,5 @@
-import { Component, OnInit } from '@angular/core';
+import { Component, OnInit, Input, EventEmitter, Output } from '@angular/core';
+import { Workout } from '../../workout.model';
 
 @Component({
   selector: 'app-workout-item',
@@ -7,9 +8,16 @@ import { Component, OnInit } from '@angular/core';
 })
 export class WorkoutItemComponent implements OnInit {
 
+  @Input() workout: Workout;
+  @Output() workoutSelected= new EventEmitter<void>();
+
   constructor() { }
 
   ngOnInit() {
   }
 
+  onSelected(){
+    this.workoutSelected.emit()
+  }
 }
+
