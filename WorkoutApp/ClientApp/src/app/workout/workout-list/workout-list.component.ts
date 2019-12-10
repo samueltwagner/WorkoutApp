@@ -20,8 +20,8 @@ export class WorkoutListComponent implements OnInit {
     ngOnInit() {
       this.workouts = this.workoutService.getWorkouts();
       this. subscription = this.workoutService.workoutListChangedEvent
-        .subscribe((workoutsList: Workout[]) => { 
-          this.workouts = workoutsList;
+        .subscribe((workoutList: Workout[]) => { 
+          this.workouts = workoutList;
         });
   
       this.workoutService.workoutListChangedEvent

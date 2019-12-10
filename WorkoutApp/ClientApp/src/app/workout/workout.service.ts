@@ -21,6 +21,7 @@ export class WorkoutService {
     return this.http
     .get<Workout[]>(
       'https://samueltwagner-cms.firebaseio.com/contacts.json'
+      // mongodb://localhost:27017/cmsDB
     )
     .subscribe((workouts: Workout[]) => {
       this.workouts = workouts;

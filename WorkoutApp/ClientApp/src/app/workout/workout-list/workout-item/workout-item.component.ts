@@ -9,7 +9,7 @@ import { Workout } from '../../workout.model';
 export class WorkoutItemComponent implements OnInit {
 
   @Input() workout: Workout;
-  @Output() workoutSelected= new EventEmitter<void>();
+  @Output() workoutSelected = new EventEmitter<void>();
 
   constructor() { }
 
