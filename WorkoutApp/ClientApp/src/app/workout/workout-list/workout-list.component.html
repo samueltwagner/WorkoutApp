@@ -16,11 +16,8 @@
     <div class="panel-body">
         <div class="row">
             <div class="col-xs-12" id="workoutList">
-                <app-workout-item></app-workout-item>
-                <workout-item
-                    *ngFor="let workout of workouts"
-                    [workout]="workout">
-                </workout-item>
+                <app-workout-item *ngFor="let workout of workouts"
+                [workout]="workout"></app-workout-item>
             </div>
         </div>
     </div>

@@ -18,16 +18,18 @@ export class WorkoutListComponent implements OnInit {
   constructor(private workoutService: WorkoutService) { }
 
     ngOnInit() {
-      this.workouts = this.workoutService.getWorkouts();
+      
       this. subscription = this.workoutService.workoutListChangedEvent
         .subscribe((workoutList: Workout[]) => { 
           this.workouts = workoutList;
         });
+
+        this.workouts = this.workoutService.getWorkouts();
   
-      this.workoutService.workoutListChangedEvent
-        .subscribe((workouts: Workout[]) => {
-        this.workouts = workouts;
-    })
+      // this.workoutService.workoutListChangedEvent
+      //   .subscribe((workouts: Workout[]) => {
+      //   this.workouts = workouts;
+    // })
     }
   
     onKeyPress(value: string){
