@@ -2,28 +2,23 @@
 	<div class="panel-heading">
 		<div class="row">
 			<div class="col-xs-12">
-				<h2>{{ contact?.name }}</h2>
+				<h2>{{ workout?.description }}</h2>
 			</div>
 		</div>
 		<div class="row">
-			<div class="col-xs-9">
-				<img [src]="contact?.imageUrl" alt="{{ contact?.name }}" style="max-height: 150px;">
-			</div>
 			<div class="col-xs-3 btn-toolbar">
-				<a class="btn btn-primary" [routerLink]="['/contacts', contact ? contact.id : 0, 'edit']">Edit</a>
+				<a class="btn btn-primary" [routerLink]="['/workouts', workout ? workout.id : 0, 'edit']">Edit</a>
 				<hr>
 				<a class="btn btn-danger" (click)="onDelete()">Delete</a>
 			</div>
 		</div>
 	</div>
 	<div class="panel-body">
-		<p><b>Date:</b> {{ workout?.date }}</p>
 		<p><b>Description:</b> {{ workout?.description }}</p>
-	</div>
-	<div class="panel-body"  *ngFor="let groupWorkout of workout?.group">
-		<div>{{ groupWorkout?.exercise }}</div>
-		<div>{{ groupWorkout?.sets }}</div>
-		<div>{{ groupWorkout?.reps }}</div>
-		<div>{{ groupWorkout?.weight }}</div>
+		<p><b>Date:</b> {{ workout?.date | date : shortDate }}</p>
+		<p><b>Exercise:</b> {{ workout?.exercise }}</p>
+		<p><b>Sets:</b> {{ workout?.sets }}</p>
+		<p><b>Reps:</b> {{ workout?.reps }}</p>
+		<p><b>Weight:</b> {{ workout?.weight }}</p>
 	</div>
 </div>

@@ -13,11 +13,11 @@ import { NgForm } from '@angular/forms';
 export class WorkoutEditComponent implements OnInit {
   workout: Workout = null;
   groupWorkout: Workout[] = [];
-  editMode: boolean = false;
-  hasGroup: boolean = false;
+  editMode = false;
+  hasGroup = false;
   id: string;
   originalWorkout: Workout;
-  invalidGroupWorkout: boolean = false;
+  invalidGroupWorkout = false;
 
   constructor(private workoutService: WorkoutService,
     private router: Router,
@@ -28,17 +28,17 @@ export class WorkoutEditComponent implements OnInit {
         .subscribe(
           (params: Params) => {
             this.id = params['id'];
-            
-            if ( this.id == null || this.id == undefined) {
+
+            if ( this.id == null || this.id === undefined) {
               return this.editMode = false;
             }
-  
+
             this.originalWorkout = this.workoutService.getWorkout(this.id);
-  
-            if ( this.originalWorkout == null || this.originalWorkout == undefined){
+
+            if ( this.originalWorkout == null || this.originalWorkout === undefined) {
               return;
             }
-  
+
             this.editMode = true;
             this.workout = JSON.parse(JSON.stringify(this.originalWorkout));
           }
@@ -48,30 +48,29 @@ export class WorkoutEditComponent implements OnInit {
     onSubmit(form: NgForm) {
       // get values from form’s fields
       const value = form.value;
-      const newWorkout = new Workout('', value,'','', value , value,'');
-      if(this.editMode == true) {
+      const newWorkout = new Workout('', value, '', '', value , value, '');
+      if (this.editMode === true) {
        this.workoutService.updateWorkout(this.originalWorkout, newWorkout);
-     }
-     else {
+     } else {
        this.workoutService.addWorkout(newWorkout);
      }
-     this.router.navigate(['/workout']);
+     this.router.navigate(['/workouts']);
    }
 
-   onCancel(){
-    this.router.navigate(['/workout']);
+   onCancel() {
+    this.originalWorkout ? this.router.navigate(['/workouts', this.originalWorkout.id]) : this.router.navigate(['/workouts']);
   }
 
-  isInvalidWorkout(newWorkout: Workout){
-    if(!newWorkout){
+  isInvalidWorkout(newWorkout: Workout) {
+    if (!newWorkout) {
       return true;
     }
 
-    if(newWorkout.id === this.workout.id){
+    if (newWorkout.id === this.workout.id) {
       return true;
     }
 
-    for (let i = 0; i < this.groupWorkout.length; i++){
+    for (let i = 0; i < this.groupWorkout.length; i++) {
       if (newWorkout.id === this.groupWorkout[i].id) {
         return true;
       }
@@ -82,25 +81,18 @@ export class WorkoutEditComponent implements OnInit {
   addToGroup($event: any) {
     const selectedWorkout: Workout = $event.dragData;
     this.invalidGroupWorkout = this.isInvalidWorkout(selectedWorkout);
-    if (this.invalidGroupWorkout){
+    if (this.invalidGroupWorkout) {
       return;
     }
     this.groupWorkout.push(selectedWorkout);
     this.invalidGroupWorkout = false;
   }
 
-  onRemoveItem(idx: number){
-    if (idx < 0 || idx >= this.groupWorkout.length){
+  onRemoveItem(idx: number) {
+    if (idx < 0 || idx >= this.groupWorkout.length) {
       return;
     }
       this.groupWorkout.splice(idx, 1);
       this.invalidGroupWorkout = false;
   }
-
 }
-
-
-
-
-
-

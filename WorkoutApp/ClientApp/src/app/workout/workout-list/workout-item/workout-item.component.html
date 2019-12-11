@@ -1,9 +1,10 @@
-<a  class="list-group-item clearfix" 
-    [routerLink]="[workout?.id] " 
-    routerLinkActive="active" 
+<a  class="list-group-item clearfix"
+    [routerLink]="[workout?.id]"
+    routerLinkActive="active"
     (click)="onSelected()">
     <div class="pull-left">
-        <h4 class="list-group-item-heading">{{ workout?.date }}</h4>
+        <h4 class="list-group-item-heading">{{ workout?.description }}</h4>
+        <h6>{{ workout?.date | date : shortDate }}</h6>
     </div>
 </a>
 

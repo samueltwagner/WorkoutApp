@@ -12,12 +12,12 @@ export class WorkoutService {
   workouts: Workout[] = [];
   maxWorkoutId: number;
 
-  constructor(private http: HttpClient) { 
+  constructor(private http: HttpClient) {
     this.fetchWorkouts();
     this.maxWorkoutId = this.getMaxId();
   }
 
-  fetchWorkouts(){
+  fetchWorkouts() {
     return this.http
     .get<Workout[]>(
       'https://localhost:5001/api/workout'
@@ -31,21 +31,21 @@ export class WorkoutService {
     (error: any) => {
       console.log(error);
       }
-    )
+    );
   }
 
   storeWorkouts() {
     this.workouts = JSON.parse(JSON.stringify(this.workouts));
     const header = new HttpHeaders({'Content-Type': 'json'});
     this.http
-      .put('https://samueltwagner-cms.firebaseio.com/contacts.json', this.workouts, {headers: header})
+      .put('https://localhost:5001/api/workout', this.workouts, {headers: header})
       .subscribe((returnedWorkouts: Workout[]) => {
         this.workoutListChangedEvent.next(returnedWorkouts.slice());
       });
   }
 
   getWorkout(id: string): Workout {
-    for (const workout of this.workouts){
+    for (const workout of this.workouts) {
       if (workout.id === id) {
         return workout;
       }
@@ -59,8 +59,8 @@ export class WorkoutService {
 
   getMaxId(): number {
     let maxId = 0;
-    for (let workout of this.workouts) {
-      let workoutId = +workout.id;
+    for (const workout of this.workouts) {
+      const workoutId = +workout.id;
         if (workoutId > maxId) {
           maxId = workoutId;
         }
@@ -68,11 +68,10 @@ export class WorkoutService {
     }
   }
 
-  addWorkout(newWorkout: Workout){
+  addWorkout(newWorkout: Workout) {
     if (!newWorkout) {
       return;
-    }
-    else {
+    } else {
       this.maxWorkoutId++;
       newWorkout.id = String(this.maxWorkoutId);
       this.workouts.push(newWorkout);
@@ -80,20 +79,20 @@ export class WorkoutService {
     }
   }
 
-  updateWorkout(originalWorkout: Workout, newWorkout: Workout){
-    if (!originalWorkout  ||  !newWorkout){
+  updateWorkout(originalWorkout: Workout, newWorkout: Workout) {
+    if (!originalWorkout  ||  !newWorkout) {
       return;
     }
     const pos = this.workouts.indexOf(originalWorkout);
-    if ( pos < 0 ){
-      console.log("No negative indexes");
+    if ( pos < 0 ) {
+      console.log('No negative indexes');
       return;
     }
     newWorkout.id = originalWorkout.id;
     this.workouts[pos] = newWorkout;
     this.storeWorkouts();
   }
-  
+
   deleteWorkout(workout: Workout) {
     if (workout === null || workout === undefined) {
       return;
