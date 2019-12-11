@@ -5,6 +5,7 @@ import { Injectable } from '@angular/core';
 export class Workout {
 
     constructor(
+        // public _id: string,
         public id: string,
         public date: Date,
         public description: string,
