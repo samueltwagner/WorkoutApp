@@ -48,7 +48,7 @@ export class WorkoutEditComponent implements OnInit {
     onSubmit(form: NgForm) {
       // get values from form’s fields
       const value = form.value;
-      const newWorkout = new Workout('', value, '', '', value , value, '');
+      const newWorkout = new Workout('', value.date, value.description, value.exercise, value.sets, value.reps, value.weight);
       if (this.editMode === true) {
        this.workoutService.updateWorkout(this.originalWorkout, newWorkout);
      } else {

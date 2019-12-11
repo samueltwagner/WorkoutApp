@@ -26,7 +26,7 @@ namespace WorkoutApp
             // requires using Microsoft.Extensions.Options
             services.Configure<WorkoutAppDatabaseSettings>(
                 Configuration.GetSection(nameof(WorkoutAppDatabaseSettings)));
-
+            services.AddCors();
             services.AddSingleton<IWorkoutAppDatabaseSettings>(sp =>
                 sp.GetRequiredService<IOptions<WorkoutAppDatabaseSettings>>().Value);
 
@@ -64,7 +64,7 @@ namespace WorkoutApp
                     name: "default",
                     pattern: "{controller}/{action=Index}/{id?}");
             });
-
+            app.UseCors(x => x.AllowAnyOrigin().AllowAnyMethod().AllowAnyHeader());
             app.UseSpa(spa =>
             {
                 // To learn more about options for serving an Angular SPA from ASP.NET Core,

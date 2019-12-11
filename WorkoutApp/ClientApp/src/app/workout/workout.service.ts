@@ -38,7 +38,7 @@ export class WorkoutService {
     this.workouts = JSON.parse(JSON.stringify(this.workouts));
     const header = new HttpHeaders({'Content-Type': 'json'});
     this.http
-      .put('https://localhost:5001/api/workout', this.workouts, {headers: header})
+      .post('https://localhost:5001/api/workout', this.workouts, {})
       .subscribe((returnedWorkouts: Workout[]) => {
         this.workoutListChangedEvent.next(returnedWorkouts.slice());
       });
@@ -59,22 +59,26 @@ export class WorkoutService {
 
   getMaxId(): number {
     let maxId = 0;
-    for (const workout of this.workouts) {
-      const workoutId = +workout.id;
-        if (workoutId > maxId) {
-          maxId = workoutId;
-        }
-        return maxId;
-    }
+
+    // var ObjectID = require('bson').ObjectID;
+    // var id  = new ObjectID();
+    // console.log(id.toString());
+
+    //https://stackoverflow.com/questions/10593337/is-there-any-way-to-create-mongodb-like-id-strings-without-mongodb/37438675
+    
+    // const ObjectId = (m = Math, d = Date, h = 16, s = s => m.floor(s).toString(h)) =>
+    // s(d.now() / 1000) + ' '.repeat(h).replace(/./g, () => s(m.random() * h))
+
+    return maxId;
   }
 
   addWorkout(newWorkout: Workout) {
     if (!newWorkout) {
       return;
     } else {
-      this.maxWorkoutId++;
       newWorkout.id = String(this.maxWorkoutId);
       this.workouts.push(newWorkout);
+      console.log(newWorkout);
       this.storeWorkouts();
     }
   }
