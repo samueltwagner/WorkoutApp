@@ -11,13 +11,10 @@ import { NgForm } from '@angular/forms';
 })
 
 export class WorkoutEditComponent implements OnInit {
-  workout: Workout = null;
-  groupWorkout: Workout[] = [];
-  editMode = false;
-  hasGroup = false;
-  id: string;
   originalWorkout: Workout;
-  invalidGroupWorkout = false;
+  workout: Workout;
+  editMode = false;
+  id: string;
 
   constructor(private workoutService: WorkoutService,
     private router: Router,
@@ -60,39 +57,5 @@ export class WorkoutEditComponent implements OnInit {
    onCancel() {
     this.originalWorkout ? this.router.navigate(['/workouts', this.originalWorkout.id]) : this.router.navigate(['/workouts']);
   }
-
-  isInvalidWorkout(newWorkout: Workout) {
-    if (!newWorkout) {
-      return true;
-    }
-
-    if (newWorkout.id === this.workout.id) {
-      return true;
-    }
-
-    for (let i = 0; i < this.groupWorkout.length; i++) {
-      if (newWorkout.id === this.groupWorkout[i].id) {
-        return true;
-      }
-    }
-    return false;
-  }
-
-  addToGroup($event: any) {
-    const selectedWorkout: Workout = $event.dragData;
-    this.invalidGroupWorkout = this.isInvalidWorkout(selectedWorkout);
-    if (this.invalidGroupWorkout) {
-      return;
-    }
-    this.groupWorkout.push(selectedWorkout);
-    this.invalidGroupWorkout = false;
-  }
-
-  onRemoveItem(idx: number) {
-    if (idx < 0 || idx >= this.groupWorkout.length) {
-      return;
-    }
-      this.groupWorkout.splice(idx, 1);
-      this.invalidGroupWorkout = false;
-  }
 }
+

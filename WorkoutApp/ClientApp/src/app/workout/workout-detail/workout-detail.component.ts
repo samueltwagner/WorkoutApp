@@ -9,7 +9,6 @@ import { Router, ActivatedRoute, Params } from '@angular/router';
   styleUrls: ['./workout-detail.component.css']
 })
 export class WorkoutDetailComponent implements OnInit {
-
   id: string;
   workout: Workout;
 
@@ -28,7 +27,6 @@ export class WorkoutDetailComponent implements OnInit {
 
     onDelete(){
       this.workoutService.deleteWorkout(this.workout);
-      this.router.navigate(['/workout'], {relativeTo: this.route}); 
+      this.router.navigate(['/workouts'], {relativeTo: this.route}); 
     }
-
 }
