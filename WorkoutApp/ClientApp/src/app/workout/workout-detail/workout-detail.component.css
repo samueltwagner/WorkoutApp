@@ -1,0 +1,17 @@
+a {
+    margin: 5px;
+    color: white;
+}
+
+p {
+    font-size: 18px;
+    padding-top: 10px;
+}
+
+#panel-detail {
+    border: solid 1px lightgray;
+    padding: 40px;
+    border-radius: 5px;
+    margin-top: 120px;
+    box-shadow: 2px 2px lightgray;
+}

@@ -1,9 +1,16 @@
-<div class="panel panel-default">
+<div id="panel-detail" class="panel panel-default">
 	<div class="panel-heading">
 		<div class="row">
 			<div class="col-xs-12">
 				<h2>{{ workout?.description }}</h2>
 			</div>
+		</div>
+		<div class="panel-body">
+			<!-- <p><b>Date:</b> {{ workout?.date | date : shortDate }}</p> -->
+			<p><b>Exercise:</b> {{ workout?.exercise }}</p>
+			<p><b>Sets:</b> {{ workout?.sets }}</p>
+			<p><b>Reps:</b> {{ workout?.reps }}</p>
+			<p><b>Weight:</b> {{ workout?.weight }}</p>
 		</div>
 		<div class="row">
 			<div class="col-xs-3 btn-toolbar">
@@ -12,13 +19,5 @@
 				<a class="btn btn-danger" (click)="onDelete()">Delete</a>
 			</div>
 		</div>
-	</div>
-	<div class="panel-body">
-		<p><b>Description:</b> {{ workout?.description }}</p>
-		<p><b>Date:</b> {{ workout?.date | date : shortDate }}</p>
-		<p><b>Exercise:</b> {{ workout?.exercise }}</p>
-		<p><b>Sets:</b> {{ workout?.sets }}</p>
-		<p><b>Reps:</b> {{ workout?.reps }}</p>
-		<p><b>Weight:</b> {{ workout?.weight }}</p>
 	</div>
 </div>

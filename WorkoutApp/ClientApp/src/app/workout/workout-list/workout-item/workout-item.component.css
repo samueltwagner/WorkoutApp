@@ -1,0 +1,11 @@
+a {
+    margin-bottom: 5px;
+    margin-left: 15px;
+    box-shadow: 2px 2px lightgray;
+}
+
+a:hover {
+    background-color:#007bff ;
+    color: white;
+    text-decoration: none;
+}
