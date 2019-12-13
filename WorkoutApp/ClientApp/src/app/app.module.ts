@@ -35,11 +35,6 @@ import { WorkoutItemComponent } from './workout/workout-list/workout-item/workou
     HttpClientModule,
     FormsModule,
     AppRoutingModule,
-    // RouterModule.forRoot([
-    //   { path: '', component: HomeComponent, pathMatch: 'full' },
-    //   { path: 'counter', component: CounterComponent },
-    //   { path: 'fetch-data', component: FetchDataComponent },
-    // ])
   ],
   providers: [],
   bootstrap: [AppComponent]

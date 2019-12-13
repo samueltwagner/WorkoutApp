@@ -12,7 +12,7 @@ export class WorkoutDetailComponent implements OnInit {
   id: string;
   workout: Workout;
 
-  //inject from service
+  // inject from service
   constructor(private workoutService: WorkoutService,
               private router: Router,
               private route: ActivatedRoute ) { }
@@ -23,10 +23,10 @@ export class WorkoutDetailComponent implements OnInit {
         this.id = params.id;
         this.workout = this.workoutService.getWorkout(this.id);
       }
-    )};
+    ); }
 
-    onDelete(){
+    onDelete() {
       this.workoutService.deleteWorkout(this.workout);
-      this.router.navigate(['/workouts'], {relativeTo: this.route}); 
+      this.router.navigate(['/workouts'], {relativeTo: this.route});
     }
 }
